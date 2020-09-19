@@ -1,0 +1,17 @@
+.vscode/**
+.vscode-test/**
+test/**
+.gitignore
+vsc-extension-quickstart.md
+**/jsconfig.json
+**/*.map
+**/.eslintrc.json
+
+project
+target
+src
+*.sbt
+*.md
+.scalafmt.conf
+.metals
+.bloop

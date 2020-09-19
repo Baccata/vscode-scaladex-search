@@ -1,0 +1,28 @@
+{
+	"name": "scaladex-search",
+	"displayName": "Scaladex search",
+	"description": "Looks up Scala libraries from vscode",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.49.0"
+	},
+	"publisher": "baccata",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.baccata.scaladex"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.baccata.scaladex",
+				"title": "Scaladex search"
+			}
+		]
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.1"
+	}
+}

@@ -1,0 +1,13 @@
+node_modules
+/.metals/
+/target/
+/.idea/
+out
+/.bloop/
+/project/.bloop/
+/project/project/target/
+/project/target/
+
+*.vsix
+
+
