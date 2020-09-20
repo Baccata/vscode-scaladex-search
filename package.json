@@ -6,7 +6,12 @@
 	"engines": {
 		"vscode": "^1.49.0"
 	},
-	"publisher": "baccata",
+  "publisher": "baccata",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Baccata/vscode-scaladex-search.git"
+  },
+  "homepage": "https://github.com/Baccata/vscode-scaladex-search",
 	"categories": [
 		"Other"
 	],
