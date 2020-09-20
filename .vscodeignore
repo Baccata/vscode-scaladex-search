@@ -7,11 +7,11 @@ vsc-extension-quickstart.md
 **/*.map
 **/.eslintrc.json
 
+assets
 project
 target
 src
 *.sbt
-*.md
 .scalafmt.conf
 .metals
 .bloop

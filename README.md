@@ -6,6 +6,9 @@ ammonite scripts / mill build definitions / SBT build definitions (depending on 
 
 ![](https://github.com/baccata/vscode-scaladex-search/raw/master/assets/scaladex.gif)
 
+## Installation
+
+Install the extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=baccata.scaladex-search)
 
 ## Instructions
 
