@@ -97,9 +97,9 @@ object extension {
         items.headOption match {
           case Some(value) =>
             for {
-              scalaconfs <- vscode.mod.workspace.findFiles("*scala.conf")
+              sbtFiles <- vscode.mod.workspace.findFiles("*.sbt")
               _ <- thenable(inputBox.dispose())
-              _ <- save(groupId, artifacts, value.label, (scalaconfs.size > 0))
+              _ <- save(groupId, artifacts, value.label, (sbtFiles.size > 0))
             } yield ()
           case None => thenable(())
         }
@@ -111,14 +111,14 @@ object extension {
         groupId: String,
         artifacts: js.Array[String],
         version: String,
-        scalaConfExists: Boolean
+        sbtFileExists: Boolean
     ) = {
       val fileName = vscode.mod.window.activeTextEditor
         .map(_.document.fileName)
         .getOrElse("build.sbt")
 
       val depString =
-        if (fileName.endsWith(".sbt") || (fileName.endsWith(".scala") && !scalaConfExists)) {
+        if (fileName.endsWith(".sbt") || (fileName.endsWith(".scala") && sbtFileExists)) {
           artifacts
             .map(a => s""" "$groupId" %% "$a" % "$version" """.trim())
             .mkString(",\n")
