@@ -2,7 +2,7 @@
 
 This humble vscode plugin adds a "Scaladex search" action that lets you search
 for Scala libraries and store them in your clipboard, ready to paste in
-ammonite scripts / mill build definitions / SBT build definitions (depending on which file is open).
+ammonite scripts / mill build definitions / SBT build definitions / scala-cli configurations / scala files (depending on which file is open).
 
 ![](https://github.com/baccata/vscode-scaladex-search/raw/master/assets/scaladex.gif)
 
