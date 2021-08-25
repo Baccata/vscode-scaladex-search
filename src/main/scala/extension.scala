@@ -97,8 +97,9 @@ object extension {
         items.headOption match {
           case Some(value) =>
             for {
+              scalaconfs <- vscode.mod.workspace.findFiles("*scala.conf")
               _ <- thenable(inputBox.dispose())
-              _ <- save(groupId, artifacts, value.label)
+              _ <- save(groupId, artifacts, value.label, (scalaconfs.size > 0))
             } yield ()
           case None => thenable(())
         }
@@ -106,12 +107,18 @@ object extension {
       inputBox.show()
     }
 
-    def save(groupId: String, artifacts: js.Array[String], version: String) = {
+    def save(
+        groupId: String,
+        artifacts: js.Array[String],
+        version: String,
+        scalaConfExists: Boolean
+    ) = {
       val fileName = vscode.mod.window.activeTextEditor
         .map(_.document.fileName)
         .getOrElse("build.sbt")
+
       val depString =
-        if (fileName.endsWith("sbt") || fileName.endsWith("scala")) {
+        if (fileName.endsWith(".sbt") || (fileName.endsWith(".scala") && !scalaConfExists)) {
           artifacts
             .map(a => s""" "$groupId" %% "$a" % "$version" """.trim())
             .mkString(",\n")
@@ -119,9 +126,13 @@ object extension {
           artifacts
             .map(a => s""" ivy"$groupId::$a:$version" """.trim())
             .mkString(",\n")
+        } else if (fileName.endsWith(".conf")) {
+          artifacts
+            .map(a => s""""$groupId::$a:$version"""")
+            .mkString("\n")
         } else
           artifacts
-            .map(a => s""" import $$ivy.`$groupId::$a:$version` """)
+            .map(a => s"""import $$ivy.`$groupId::$a:$version`""")
             .mkString("\n")
       for {
         _ <- vscode.mod.env.clipboard.writeText(depString)
