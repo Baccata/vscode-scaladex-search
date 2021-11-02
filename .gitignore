@@ -5,8 +5,7 @@ node_modules
 out
 /.bloop/
 /project/.bloop/
-/project/project/target/
-/project/target/
+/project/**/target/
 
 *.vsix
 

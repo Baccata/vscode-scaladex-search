@@ -29,7 +29,7 @@ object extension {
       """Extension active !"""
     )
 
-    def scaladexSearch(): js.Function1[js.Any, Any] = in => {
+    def scaladexSearch(): js.Function1[js.Any, js.Any] = in => {
       val inputBox = vscode.mod.window.createQuickPick[QuickPickItem]()
 
       inputBox.placeholder = "name a scala library (eg: cats) and press enter"
@@ -76,7 +76,7 @@ object extension {
         thenable { selection = newSelection.map(_.label) }
       }
 
-      inputBox.onDidAccept { () =>
+      inputBox.onDidAccept { _ =>
         val artifacts = selection
         inputBox.dispose()
         versions(projectDetails.groupId, artifacts, projectDetails.versions)
@@ -126,9 +126,9 @@ object extension {
           artifacts
             .map(a => s""" ivy"$groupId::$a:$version" """.trim())
             .mkString(",\n")
-        } else if (fileName.endsWith(".conf")) {
+        } else if (fileName.endsWith(".scala")) {
           artifacts
-            .map(a => s""""$groupId::$a:$version"""")
+            .map(a => s"""// using lib $groupId::$a:$version""")
             .mkString("\n")
         } else
           artifacts
