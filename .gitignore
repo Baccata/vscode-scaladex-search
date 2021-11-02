@@ -6,6 +6,7 @@ out
 /.bloop/
 /project/.bloop/
 /project/**/target/
+.bsp
 
 *.vsix
 

@@ -20,7 +20,6 @@ Install the extension from the [Marketplace](https://marketplace.visualstudio.co
 6. Select an artifact version
 7. CTRL-V wherever
 
-
 ## Development
 
 The plugin is written in Scalajs.
@@ -35,3 +34,11 @@ See [pme123/vscode-scalajs-hello](https://github.com/pme123/vscode-scalajs-hello
 [SBT]: https://www.scala-sbt.org
 [ScalaJS]: http://www.scala-js.org
 [scalajs-bundler]: https://github.com/scalacenter/scalajs-bundler
+
+## Packaging / publishing
+
+```bash
+$ sbt fullOptJs
+$ vsce package
+$ vsce publish
+```
