@@ -128,7 +128,7 @@ object extension {
             .mkString(",\n")
         } else if (fileName.endsWith(".scala")) {
           artifacts
-            .map(a => s"""// using lib $groupId::$a:$version""")
+            .map(a => s"""// using lib "$groupId::$a:$version"""")
             .mkString("\n")
         } else
           artifacts
