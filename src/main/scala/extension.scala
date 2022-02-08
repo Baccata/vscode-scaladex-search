@@ -91,7 +91,7 @@ object extension {
         versions: js.Array[String]
     ): Unit = {
       val inputBox = vscode.mod.window.createQuickPick[QuickPickItem]()
-      inputBox.items = versions.reverse.map(v => QuickPickItem(v))
+      inputBox.items = versions.map(v => QuickPickItem(v))
 
       inputBox.onDidChangeSelection { items =>
         items.headOption match {
