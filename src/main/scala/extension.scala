@@ -77,7 +77,12 @@ object extension {
       }
 
       inputBox.onDidAccept { _ =>
-        val artifacts = selection
+        val artifacts =
+          if (!selection.isEmpty) {
+            selection
+          } else {
+            inputBox.activeItems.map(_.label)
+          }
         inputBox.dispose()
         versions(projectDetails.groupId, artifacts, projectDetails.versions)
       }
