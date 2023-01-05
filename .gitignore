@@ -9,5 +9,4 @@ out
 .bsp
 
 *.vsix
-
-
+*.vscode
