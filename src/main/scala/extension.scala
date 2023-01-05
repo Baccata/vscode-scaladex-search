@@ -135,7 +135,7 @@ object extension {
           artifacts
             .map(a => s"""//> using lib "$groupId::$a:$version"""")
             .mkString("\n")
-        } else if (fileName == "bleep.yaml") {
+        } else if (fileName.endsWith("bleep.yaml")) {
           artifacts
             .map(a => s"""$groupId::$a:$version""")
             .mkString("\n")
