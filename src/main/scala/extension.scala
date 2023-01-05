@@ -135,6 +135,10 @@ object extension {
           artifacts
             .map(a => s"""//> using lib "$groupId::$a:$version"""")
             .mkString("\n")
+        } else if (fileName == "bleep.yaml") {
+          artifacts
+            .map(a => s"""$groupId::$a:$version""")
+            .mkString("\n")
         } else
           artifacts
             .map(a => s"""import $$ivy.`$groupId::$a:$version`""")
