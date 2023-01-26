@@ -29,14 +29,14 @@ object ops {
         onfulfilled = { (v: A) =>
           p2.success(v)
           (): Unit | Thenable[Unit]
-        },
-        onrejected = { (e: js.Any) =>
+        }: js.Function1[A, Unit | Thenable[Unit]],
+        onrejected = { (e: Any) =>
           p2.failure(e match {
             case th: Throwable => th
             case _             => js.JavaScriptException(e)
           })
           (): Unit | Thenable[Unit]
-        }: js.Function1[js.Any, Unit | Thenable[Unit]]
+        }: js.Function1[Any, Unit | Thenable[Unit]]
       )
       p2.future
     }
