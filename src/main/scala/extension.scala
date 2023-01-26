@@ -29,7 +29,7 @@ object extension {
       """Extension active !"""
     )
 
-    def scaladexSearch(): js.Function1[js.Any, js.Any] = in => {
+    def scaladexSearch(): js.Function1[scala.Any, scala.Any] = in => {
       val inputBox = vscode.mod.window.createQuickPick[QuickPickItem]()
 
       inputBox.placeholder = "name a scala library (eg: cats) and press enter"
