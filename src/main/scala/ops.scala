@@ -23,6 +23,8 @@ object ops {
     def map[B](f: A => B): Thenable[B] =
       p.`then`[B]((a: A) => (f(a): B | Thenable[B]))
 
+    def unit: Thenable[Unit] = map(_ => ())
+
     def toFuture: scala.concurrent.Future[A] = {
       val p2 = scala.concurrent.Promise[A]()
       p.`then`[Unit](

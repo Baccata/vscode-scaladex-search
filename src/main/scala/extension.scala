@@ -1,23 +1,11 @@
 import typings.vscode
 import typings.vscode.anon.Dispose
-import typings.vscode.Thenable
 import typings.vscode.mod.ExtensionContext
 
-import scala.collection.immutable
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
-import scala.scalajs.js.UndefOr
-import typings.std.stdStrings.input
-import scala.scalajs.js.Thenable.Implicits._
-import scala.scalajs.js.|
-import js.JSConverters._
 
-import typings.vscode.mod.QuickInputButton
-import typings.vscode.anon.Dark
-import typings.vscode.mod.ThemeIcon
 import typings.vscode.mod.QuickPickItem
-import typings.std.global.console
-import typings.std.global.fetch
 
 object extension {
   import ops._
@@ -147,7 +135,7 @@ object extension {
         _ <- vscode.mod.env.clipboard.writeText(depString)
         _ <- vscode.mod.window.showInformationMessage(
           "Dependencies have been copied to the clipboard"
-        )
+        ).unit
       } yield ()
     }
 
