@@ -37,8 +37,8 @@ lazy val root = project
     open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
     // scalaJSUseMainModuleInitializer := true,
     Compile / npmDependencies ++= Seq(
-      "@types/vscode" -> "1.49",
-      "node-fetch" -> "^2.6.1"
+      "@types/vscode" -> "1.74.0",
+      "node-fetch" -> "^3.3.0"
     ),
     stIgnore ++= List(
       "node-fetch"
