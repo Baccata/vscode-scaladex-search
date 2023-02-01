@@ -31,9 +31,13 @@ Install the extension from the [Marketplace](https://marketplace.visualstudio.co
 
 The plugin is written in Scalajs.
 
-To run VSCode in an Extension Development Host (useful for manual testing), run `sbt open`.
 
-See [pme123/vscode-scalajs-hello](https://github.com/pme123/vscode-scalajs-hello) for more developent instructions.
+* To compile the Scala code, run `sbt fastOptJS`.
+* To build the complete plugin along with its NPM dependencies, run `sbt assemble`.
+  * The build output is located at `target/scala-2.13/scalajs-bundler/main`. It can be packaged or published using the [`vsce`](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#vsce) tool.
+* To run an Extension Development Host (useful for manual testing), run `sbt open`.
+
+* See [pme123/vscode-scalajs-hello](https://github.com/pme123/vscode-scalajs-hello) for more developent instructions.
 
 Refs:
 

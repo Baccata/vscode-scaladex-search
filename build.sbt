@@ -1,49 +1,43 @@
-import scala.sys.process._
+ThisBuild / organization := "baccata"
+ThisBuild / version      := "0.3.4"
+ThisBuild / scalaVersion := "2.13.11"
 
-lazy val installDependencies = Def.task[Unit] {
-  val base = (ThisProject / baseDirectory).value
-  val log = (ThisProject / streams).value.log
-  if (!(base / "node_module").exists) {
-    val pb =
-      new java.lang.ProcessBuilder("npm", "install")
-        .directory(base)
-        .redirectErrorStream(true)
+ThisBuild / name := "Scaladex search"
+ThisBuild / normalizedName := "scaladex-search"
+ThisBuild / description := "Looks up Scala libraries from vscode"
+ThisBuild / homepage := Some(url("https://github.com/Baccata/vscode-scaladex-search"))
+ThisBuild / licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+ThisBuild / scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/Baccata/vscode-scaladex-search"),
+    "scm:https://github.com/Baccata/vscode-scaladex-search.git"
+  )
+)
 
-    pb ! log
-  }
-}
-
-lazy val open = taskKey[Unit]("open vscode")
-def openVSCodeTask: Def.Initialize[Task[Unit]] =
-  Def
-    .task[Unit] {
-      val base = (ThisProject / baseDirectory).value
-      val log = (ThisProject / streams).value.log
-
-      val path = base.getCanonicalPath
-      s"code --extensionDevelopmentPath=$path" ! log
-      ()
-    }
-    .dependsOn(installDependencies)
 
 lazy val root = project
   .in(file("."))
   .settings(
-    scalaVersion := "2.13.11",
     moduleName := "vscode-scaladex-search",
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
-    Compile / fastOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
-    Compile / fullOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
-    open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
     // scalaJSUseMainModuleInitializer := true,
     Compile / npmDependencies ++= Seq(
-      "@types/vscode" -> "1.73.0"
+      "node-fetch" -> "^2.6.1"
     ),
+    Compile / npmDevDependencies ++= Seq(
+      "@types/vscode" -> "^1.73.0"
+    ),
+    stIncludeDev := true,
+    stIgnore ++= List(
+      "node-fetch"
+    ),
+    contributedCommands += VsCommand("extension.baccata.scaladex", "Scaladex search"),
     testFrameworks += new TestFramework("utest.runner.Framework")
     // publishMarketplace := publishMarketplaceTask.dependsOn(fullOptJS in Compile).value
   )
   .enablePlugins(
     ScalaJSPlugin,
     ScalaJSBundlerPlugin,
-    ScalablyTypedConverterPlugin
+    ScalablyTypedConverterPlugin,
+    VsCodeExtensionPlugin
   )
