@@ -26,7 +26,7 @@ object scaladex {
     searchResults.reduce { (a, b) =>
       a.flatMap { a =>
         b.map { b =>
-          (a ++ b).distinct
+          (a ++ b).distinctBy(_.repository)
         }
       }
     }
