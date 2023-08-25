@@ -4,7 +4,7 @@
 	"description": "Looks up Scala libraries from vscode",
 	"version": "0.3.3",
 	"engines": {
-		"vscode": "^1.49.0"
+		"vscode": "^1.73.0"
 	},
 	"publisher": "baccata",
 	"repository": {

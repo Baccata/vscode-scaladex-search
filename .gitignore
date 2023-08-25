@@ -10,3 +10,5 @@ out
 
 *.vsix
 *.vscode
+/project/metals.sbt
+/project/project/

@@ -29,16 +29,16 @@ def openVSCodeTask: Def.Initialize[Task[Unit]] =
 lazy val root = project
   .in(file("."))
   .settings(
-    scalaVersion := "2.13.7",
-    moduleName := "vscode-scalajs-hello",
+    scalaVersion := "2.13.11",
+    moduleName := "vscode-scaladex-search",
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
     Compile / fastOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
     Compile / fullOptJS / artifactPath := baseDirectory.value / "out" / "extension.js",
     open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
     // scalaJSUseMainModuleInitializer := true,
     Compile / npmDependencies ++= Seq(
-      "@types/vscode" -> "1.74.0",
-      "node-fetch" -> "^3.3.0"
+      "@types/vscode" -> "1.73.0",
+      "node-fetch" -> "^3.3.2"
     ),
     stIgnore ++= List(
       "node-fetch"
