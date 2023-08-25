@@ -1,5 +1,6 @@
 import scala.scalajs.js
 import typings.std.stdStrings.p
+import typings.vscode.Thenable
 
 object scaladex {
 
@@ -8,7 +9,7 @@ object scaladex {
   val target = "JVM"
   val scalaVersion = Seq("2.13", "3")
 
-  def search(name: String) = {
+  def search(name: String): Thenable[js.Array[Project]] = {
     val n = name.trim()
 
     val searchResults = scalaVersion.map { version =>
@@ -31,7 +32,7 @@ object scaladex {
     }
   }
 
-  def project(org: String, repo: String) = {
+  def project(org: String, repo: String): Thenable[ProjectDetails] = {
     fetch(
       s"https://index.scala-lang.org/api/project?organization=$org&repository=$repo"
     ).flatMap(_.json).map { json =>
