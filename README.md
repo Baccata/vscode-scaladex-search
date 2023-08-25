@@ -10,7 +10,7 @@ for Scala libraries and store them in your clipboard, ready to paste in (dependi
 * scala-cli scripts
 * scala files
 
-![](https://media.githubusercontent.com/media/Baccata/vscode-scaladex-search/main/assets/scaladex.gif)
+![demo](https://media.githubusercontent.com/media/Baccata/vscode-scaladex-search/main/assets/scaladex.gif)
 
 
 ## Installation
@@ -31,21 +31,32 @@ Install the extension from the [Marketplace](https://marketplace.visualstudio.co
 
 The plugin is written in Scalajs.
 
-See [pme123/vscode-scalajs-hello](https://github.com/pme123/vscode-scalajs-hello) for developent instructions
+To run VSCode in an Extension Development Host (useful for manual testing), run `sbt open`.
 
+See [pme123/vscode-scalajs-hello](https://github.com/pme123/vscode-scalajs-hello) for more developent instructions.
 
-[accessible-scala]: https://marketplace.visualstudio.com/items?itemName=scala-center.accessible-scala
-[helloworld-minimal-sample]: https://github.com/Microsoft/vscode-extension-samples/tree/master/helloworld-minimal-sample
-[helloworld-scalajs-sample]: https://github.com/pme123/vscode-scalajs-hello
-[Scalably Typed]: https://github.com/oyvindberg/ScalablyTyped
-[SBT]: https://www.scala-sbt.org
-[ScalaJS]: http://www.scala-js.org
-[scalajs-bundler]: https://github.com/scalacenter/scalajs-bundler
+Refs:
+
+* [accessible-scala](https://marketplace.visualstudio.com/items?itemName=scala-center.accessible-scala)
+* [helloworld-minimal-sample](https://github.com/Microsoft/vscode-extension-samples/tree/master/helloworld-minimal-sample)
+* [helloworld-scalajs-sample](https://github.com/pme123/vscode-scalajs-hello)
+* [Scalably Typed](https://github.com/oyvindberg/ScalablyTyped)
+* [SBT](https://www.scala-sbt.org)
+* [ScalaJS](http://www.scala-js.org)
+* [scalajs-bundler](https://github.com/scalacenter/scalajs-bundler)
 
 ## Packaging / publishing
 
+You need a local install of NodeJS with NPM. Install VSCode extension manager with:
+
 ```bash
-$ sbt fullOptJs
-$ vsce package
-$ vsce publish
+npm install -g @vscode/vsce
+```
+
+Then use:
+
+```bash
+sbt fullOptJS
+vsce package
+vsce publish
 ```

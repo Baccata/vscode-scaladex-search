@@ -37,11 +37,7 @@ lazy val root = project
     open := openVSCodeTask.dependsOn(Compile / fastOptJS).value,
     // scalaJSUseMainModuleInitializer := true,
     Compile / npmDependencies ++= Seq(
-      "@types/vscode" -> "1.73.0",
-      "node-fetch" -> "^3.3.2"
-    ),
-    stIgnore ++= List(
-      "node-fetch"
+      "@types/vscode" -> "1.73.0"
     ),
     testFrameworks += new TestFramework("utest.runner.Framework")
     // publishMarketplace := publishMarketplaceTask.dependsOn(fullOptJS in Compile).value
