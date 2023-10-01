@@ -106,9 +106,13 @@ object extension {
         version: String,
         sbtFileExists: Boolean
     ) = {
-      val fileName = vscode.mod.window.activeTextEditor
-        .map(_.document.fileName)
+      val documentOpt = vscode.mod.window.activeTextEditor
+        .map(_.document)
+
+      val fileName = documentOpt.map(_.fileName)
         .getOrElse("build.sbt")
+
+      val fileText = documentOpt.map(_.getText()).getOrElse("")
 
       val depString =
         if (fileName.endsWith(".sbt") || (fileName.endsWith(".scala") && sbtFileExists)) {
@@ -119,7 +123,7 @@ object extension {
           artifacts
             .map(a => s""" ivy"$groupId::$a:$version" """.trim())
             .mkString(",\n")
-        } else if (fileName.endsWith(".scala")) {
+        } else if (fileName.endsWith(".scala") || isLikelyScalaCliScript(fileName, fileText)) {
           artifacts
             .map(a => s"""//> using lib "$groupId::$a:$version"""")
             .mkString("\n")
@@ -152,6 +156,13 @@ object extension {
         )
     }
 
+  }
+
+  private def isLikelyScalaCliScript(
+    fileName: String,
+    fileText: String
+  ): Boolean = {
+    fileName.endsWith(".sc") && fileText.contains("//> using")
   }
 
 }
