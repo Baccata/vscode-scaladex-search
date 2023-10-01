@@ -162,7 +162,9 @@ object extension {
     fileName: String,
     fileText: String
   ): Boolean = {
-    fileName.endsWith(".sc") && fileText.contains("//> using")
+    fileName.endsWith(".sc") &&
+    // optional spaces after //> are allowed
+    """//> *using""".r.findFirstIn(fileText).isDefined
   }
 
 }
