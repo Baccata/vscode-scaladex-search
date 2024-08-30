@@ -125,7 +125,7 @@ object extension {
             .mkString(",\n")
         } else if (fileName.endsWith(".scala") || isLikelyScalaCliScript(fileName, fileText)) {
           artifacts
-            .map(a => s"""//> using lib "$groupId::$a:$version"""")
+            .map(a => s"""//> using dep "$groupId::$a:$version"""")
             .mkString("\n")
         } else if (fileName.endsWith("bleep.yaml")) {
           artifacts
