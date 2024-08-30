@@ -2,7 +2,7 @@
 	"name": "scaladex-search",
 	"displayName": "Scaladex search",
 	"description": "Looks up Scala libraries from vscode",
-	"version": "0.3.4",
+	"version": "0.3.5",
 	"engines": {
 		"vscode": "^1.73.0"
 	},
